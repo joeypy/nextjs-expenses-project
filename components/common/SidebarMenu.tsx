@@ -5,6 +5,7 @@ import logoTs from '@/public/logo.png';
 import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 // Icons
 import {
   HomeOutlinedIcon,
@@ -25,7 +26,7 @@ export const SidebarMenu = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState('Dashboard');
+  const { pathname } = useRouter();
 
   const handleToggle = () => {
     setIsCollapsed(!isCollapsed);
@@ -76,8 +77,7 @@ export const SidebarMenu = () => {
           title="Dashboard"
           href="/"
           icon={<HomeOutlinedIcon />}
-          selected={selected}
-          setSelected={setSelected}
+          page={pathname}
           colors={colors}
           close={isCollapsed}
         />
@@ -87,8 +87,7 @@ export const SidebarMenu = () => {
           title="Cuentas"
           href="/accounts"
           icon={<PeopleOutlineOutlinedIcon />}
-          selected={selected}
-          setSelected={setSelected}
+          page={pathname}
           colors={colors}
           close={isCollapsed}
         />
@@ -96,8 +95,7 @@ export const SidebarMenu = () => {
           title="Transacciones"
           href="/transactions"
           icon={<CurrencyExchangeOutlinedIcon />}
-          selected={selected}
-          setSelected={setSelected}
+          page={pathname}
           colors={colors}
           close={isCollapsed}
         />
@@ -105,8 +103,7 @@ export const SidebarMenu = () => {
           title="Categorías"
           href="/categories"
           icon={<CategoryOutlinedIcon />}
-          selected={selected}
-          setSelected={setSelected}
+          page={pathname}
           colors={colors}
           close={isCollapsed}
         />
@@ -117,8 +114,7 @@ export const SidebarMenu = () => {
           title="Calendario"
           href="/calendar"
           icon={<CalendarMonthOutlinedIcon />}
-          selected={selected}
-          setSelected={setSelected}
+          page={pathname}
           colors={colors}
           close={isCollapsed}
         />
@@ -129,8 +125,7 @@ export const SidebarMenu = () => {
           title="Line Chart"
           href="/chart/line"
           icon={<TimelineOutlinedIcon />}
-          selected={selected}
-          setSelected={setSelected}
+          page={pathname}
           colors={colors}
           close={isCollapsed}
         />
@@ -138,8 +133,7 @@ export const SidebarMenu = () => {
           title="Bar Chart"
           href="/chart/bar"
           icon={<BarChartOutlinedIcon />}
-          selected={selected}
-          setSelected={setSelected}
+          page={pathname}
           colors={colors}
           close={isCollapsed}
         />
@@ -147,8 +141,7 @@ export const SidebarMenu = () => {
           title="Pie Chart"
           href="/chart/pie"
           icon={<DataUsageOutlinedIcon />}
-          selected={selected}
-          setSelected={setSelected}
+          page={pathname}
           colors={colors}
           close={isCollapsed}
         />
@@ -157,20 +150,11 @@ export const SidebarMenu = () => {
   );
 };
 
-const MenuItem = ({
-  title,
-  href,
-  icon,
-  selected,
-  setSelected,
-  colors,
-  close,
-}: any) => {
+const MenuItem = ({ title, href, icon, page, colors, close }: any) => {
   return (
     <Item
-      active={selected === title}
+      active={page === href}
       style={{ color: colors.grey[100] }}
-      onClick={() => setSelected(title)}
       close={close}
     >
       <Link href={href}>

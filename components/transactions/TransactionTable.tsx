@@ -1,6 +1,4 @@
-import { Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import { HeaderMain } from '../common';
 
 export const TransactionTable = () => {
   const columns = [
@@ -62,8 +60,8 @@ export const TransactionTable = () => {
     },
     {
       id: 2,
-      description: 'Cobro de predictvia',
-      amount: 2100,
+      description: 'Cobro de proyecto',
+      amount: 1100,
       account: 'Banesco Panamá',
       category: 'ingresos',
       transaction_type: 'income',
@@ -81,34 +79,21 @@ export const TransactionTable = () => {
   ];
 
   return (
-    <Box
+    <DataGrid
+      autoHeight
+      rows={rows}
+      density="compact"
+      // @ts-ignore
+      columns={columns}
+      // loading={true}
+      pageSize={50}
+      rowsPerPageOptions={[15]}
+      checkboxSelection
+      // disableSelectionOnClick
+      // experimentalFeatures={{ newEditingApi: true }}
       sx={{
-        p: '0 2rem',
-        width: '100%',
-        height: '100%',
         fontSize: '1rem !important',
       }}
-    >
-      <HeaderMain
-        title="TRANSACCIONES"
-        subtitle="Información de transacciones"
-      />
-      <DataGrid
-        autoHeight
-        rows={rows}
-        density="compact"
-        // @ts-ignore
-        columns={columns}
-        // loading={true}
-        pageSize={50}
-        rowsPerPageOptions={[15]}
-        checkboxSelection
-        // disableSelectionOnClick
-        // experimentalFeatures={{ newEditingApi: true }}
-        sx={{
-          fontSize: '1rem !important',
-        }}
-      />
-    </Box>
+    />
   );
 };
