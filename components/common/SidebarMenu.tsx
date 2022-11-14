@@ -16,6 +16,8 @@ import {
   DataUsageOutlinedIcon,
   TimelineOutlinedIcon,
   CalendarMonthOutlinedIcon,
+  ReceiptLongOutlinedIcon,
+  SettingsOutlinedIcon,
 } from './Icons';
 
 interface ISidebar {
@@ -108,17 +110,6 @@ export const SidebarMenu = () => {
           close={isCollapsed}
         />
 
-        {/* Pages */}
-        <MenuTitle title="Páginas" color={colors} close={isCollapsed} />
-        <MenuItem
-          title="Calendario"
-          href="/calendar"
-          icon={<CalendarMonthOutlinedIcon />}
-          page={pathname}
-          colors={colors}
-          close={isCollapsed}
-        />
-
         {/* Gráficas */}
         <MenuTitle title="Gráficas" color={colors} close={isCollapsed} />
         <MenuItem
@@ -141,6 +132,33 @@ export const SidebarMenu = () => {
           title="Pie Chart"
           href="/chart/pie"
           icon={<DataUsageOutlinedIcon />}
+          page={pathname}
+          colors={colors}
+          close={isCollapsed}
+        />
+
+        {/* Pages */}
+        <MenuTitle title="Páginas" color={colors} close={isCollapsed} />
+        <MenuItem
+          title="Calendario"
+          href="/calendar"
+          icon={<CalendarMonthOutlinedIcon />}
+          page={pathname}
+          colors={colors}
+          close={isCollapsed}
+        />
+        <MenuItem
+          title="Reportes"
+          href="/reports"
+          icon={<ReceiptLongOutlinedIcon />}
+          page={pathname}
+          colors={colors}
+          close={isCollapsed}
+        />
+        <MenuItem
+          title="Configuraciones"
+          href="/settings"
+          icon={<SettingsOutlinedIcon />}
           page={pathname}
           colors={colors}
           close={isCollapsed}

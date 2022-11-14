@@ -4,6 +4,8 @@ import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 // Charts
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
@@ -21,4 +23,6 @@ export {
   SsidChartOutlinedIcon,
   DataUsageOutlinedIcon,
   CalendarMonthOutlinedIcon,
+  ReceiptLongOutlinedIcon,
+  SettingsOutlinedIcon,
 };
