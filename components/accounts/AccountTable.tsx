@@ -8,54 +8,18 @@ import {
 import { tokens } from '@/theme/theme';
 import { AccountPill } from '../common/AccountWidget';
 
-export const TransactionTable = () => {
+export const AccountTable = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const columns = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      headerAlign: 'center',
-      align: 'center',
-      width: 80,
-    },
-    {
-      field: 'description',
-      headerName: 'Descripción',
-      headerAlign: 'center',
-      align: 'center',
-      flex: 1,
-    },
-    {
-      field: 'amount',
-      headerName: 'Monto',
-      headerAlign: 'center',
-      align: 'center',
-      flex: 1,
-      renderCell: ({ row: { transaction_type, amount } }: any) => (
-        <>
-          <AttachMoneyOutlinedIcon /> {amount}
-        </>
-      ),
-    },
-    {
-      field: 'transaction_type',
-      headerName: 'Tipo',
-      headerAlign: 'center',
-      align: 'center',
-      flex: 1,
-      renderCell: ({ row: { transaction_type } }: any) =>
-        Indicator(transaction_type, colors),
-    },
-    {
-      field: 'category',
-      headerName: 'Categoría',
-      headerAlign: 'center',
-      align: 'center',
-      flex: 1,
-      // editable: true,
-    },
+    // {
+    //   field: 'id',
+    //   headerName: 'ID',
+    //   headerAlign: 'center',
+    //   align: 'center',
+    //   flex: 0.5,
+    // },
     {
       field: 'account',
       headerName: 'Cuenta',
@@ -65,40 +29,43 @@ export const TransactionTable = () => {
       renderCell: ({ value }: any) => AccountPill({ text: value }),
     },
     {
-      field: 'created_at',
-      headerName: 'Fecha',
+      field: 'amount',
+      headerName: 'Total',
       headerAlign: 'center',
       align: 'center',
       flex: 1,
+      renderCell: ({ row: { transaction_type, amount } }: any) => (
+        <>
+          <AttachMoneyOutlinedIcon /> {amount}
+        </>
+      ),
     },
+    // {
+    //   field: 'created_at',
+    //   headerName: 'Fecha',
+    //   headerAlign: 'center',
+    //   align: 'center',
+    //   flex: 1,
+    // },
   ];
 
   const rows = [
     {
       id: 1,
-      description: 'Pago de internet',
       amount: 30,
-      category: 'internet',
       account: 'Efectivo',
-      transaction_type: 'expenses',
       created_at: '12-05-2022',
     },
     {
       id: 2,
-      description: 'Cobro de proyecto',
       amount: 1100,
       account: 'Banesco Panama',
-      category: 'ingresos',
-      transaction_type: 'income',
       created_at: '12-05-2022',
     },
     {
       id: 3,
-      description: 'Compra de comida',
       amount: 100,
       account: 'Zelle',
-      category: 'comida',
-      transaction_type: 'expenses',
       created_at: '12-05-2022',
     },
   ];

@@ -1,7 +1,12 @@
+import { AccountMain } from '@/components/accounts';
 import React from 'react';
 
 const AccountPage = () => {
-  return <div>AccountsPage</div>;
+  return (
+    <div>
+      <AccountMain />
+    </div>
+  );
 };
 
 export default AccountPage;

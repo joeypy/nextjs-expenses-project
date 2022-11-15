@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 // Icons
 import {
   HomeOutlinedIcon,
-  PeopleOutlineOutlinedIcon,
+  AccountBalanceOutlinedIcon,
   BarChartOutlinedIcon,
   CategoryOutlinedIcon,
   CurrencyExchangeOutlinedIcon,
@@ -20,9 +20,7 @@ import {
   SettingsOutlinedIcon,
 } from './Icons';
 
-interface ISidebar {
-  collapsed?: boolean;
-}
+
 
 export const SidebarMenu = () => {
   const theme = useTheme();
@@ -62,7 +60,7 @@ export const SidebarMenu = () => {
           {!isCollapsed && (
             <Typography
               variant="h5"
-              color={colors.greenAccent[500]}
+              color={colors.greenAccent[300]}
               fontWeight="bold"
               sx={{
                 mt: '10px',
@@ -84,11 +82,11 @@ export const SidebarMenu = () => {
           close={isCollapsed}
         />
         {/* Datos */}
-        <MenuTitle title="Datos" color={colors} close={isCollapsed} />
+        <MenuTitle title="Datos" colors={colors} close={isCollapsed} />
         <MenuItem
           title="Cuentas"
           href="/accounts"
-          icon={<PeopleOutlineOutlinedIcon />}
+          icon={<AccountBalanceOutlinedIcon />}
           page={pathname}
           colors={colors}
           close={isCollapsed}
@@ -111,7 +109,7 @@ export const SidebarMenu = () => {
         />
 
         {/* Gráficas */}
-        <MenuTitle title="Gráficas" color={colors} close={isCollapsed} />
+        <MenuTitle title="Gráficas" colors={colors} close={isCollapsed} />
         <MenuItem
           title="Line Chart"
           href="/chart/line"
@@ -138,7 +136,7 @@ export const SidebarMenu = () => {
         />
 
         {/* Pages */}
-        <MenuTitle title="Páginas" color={colors} close={isCollapsed} />
+        <MenuTitle title="Páginas" colors={colors} close={isCollapsed} />
         <MenuItem
           title="Calendario"
           href="/calendar"
@@ -168,13 +166,20 @@ export const SidebarMenu = () => {
   );
 };
 
-const MenuItem = ({ title, href, icon, page, colors, close }: any) => {
+interface IMenuItem {
+  title: string;
+  href: string;
+  page: string;
+  colors: any;
+  close: boolean;
+  icon: JSX.Element;
+}
+
+const MenuItem = ({ title, href, icon, page, colors, close }: IMenuItem) => {
+  const isActive = page === href;
+
   return (
-    <Item
-      active={page === href}
-      style={{ color: colors.grey[100] }}
-      close={close}
-    >
+    <Item active={isActive} style={{ color: colors.grey[100] }} close={close}>
       <Link href={href}>
         {close ? (
           <Tooltip title={title} placement="right">
@@ -189,7 +194,14 @@ const MenuItem = ({ title, href, icon, page, colors, close }: any) => {
   );
 };
 
-const MenuTitle = ({ title, colors, close }: any) => {
+// MenuTitle
+interface IMenuTitle {
+  title: string;
+  colors: any;
+  close: boolean;
+}
+
+const MenuTitle = ({ title, colors, close }: IMenuTitle) => {
   return (
     <>
       {close ? (
@@ -207,6 +219,10 @@ const MenuTitle = ({ title, colors, close }: any) => {
   );
 };
 
+interface ISidebar {
+  collapsed?: boolean;
+}
+
 const Sidebar = styled(Box)<ISidebar>`
   height: 100%;
   width: ${(props) => (props.collapsed ? '70px' : '250px')};
@@ -221,7 +237,12 @@ const Menu = styled(Box)`
   margin: auto;
 `;
 
-const Item = styled(Box)<{ active: boolean; close?: boolean }>`
+interface IItem {
+  active: boolean;
+  close?: boolean;
+}
+
+const Item = styled(Box)<IItem>`
   width: 100%;
   padding: ${(props) => (props.close ? '.8rem' : '0.5rem 1rem')};
 
