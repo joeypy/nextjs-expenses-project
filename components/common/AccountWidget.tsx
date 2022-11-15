@@ -36,11 +36,11 @@ export const AccountPill = ({ text }: Props) => {
   );
 };
 
-const BoxStyled = styled(Box)`
+const BoxStyled = styled(Box)<{ colors: any }>`
   display: flex;
   align-items: center;
   gap: 1rem;
   svg {
-    color: ${({colors}) => colors.greenAccent[500]};
+    color: ${({ colors }) => colors.greenAccent[500]};
   }
 `;
