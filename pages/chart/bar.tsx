@@ -1,7 +1,11 @@
-import React from 'react';
+import { BarChartMain } from '../../components/barchart/BarChartMain';
 
 const ChartBarPage = () => {
-  return <div>ChartBarPage</div>;
+  return (
+    <div>
+      <BarChartMain />
+    </div>
+  );
 };
 
 export default ChartBarPage;

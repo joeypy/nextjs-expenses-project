@@ -1,5 +1,5 @@
 import { Box, useTheme } from '@mui/material';
-import { DataGrid, GridEventListener } from '@mui/x-data-grid';
+import { DataGrid, GridEventListener, GridToolbar } from '@mui/x-data-grid';
 import {
   AttachMoneyOutlinedIcon,
   TrendingDownOutlinedIcon,
@@ -33,10 +33,18 @@ export const TransactionTable = () => {
       headerAlign: 'center',
       align: 'center',
       flex: 1,
-      renderCell: ({ row: { transaction_type, amount } }: any) => (
-        <>
-          <AttachMoneyOutlinedIcon /> {amount}
-        </>
+      renderCell: ({ row: { amount, transaction_type } }: any) => (
+        <Box
+          color={
+            transaction_type == 'expenses'
+              ? colors.redAccent[400]
+              : colors.greenAccent[400]
+          }
+        >
+          <Box fontWeight="600">
+            {transaction_type == 'expenses' && '- '}$ {amount}
+          </Box>
+        </Box>
       ),
     },
     {
@@ -119,20 +127,24 @@ export const TransactionTable = () => {
         '& .MuiDataGrid-footerContainer': {
           backgroundColor: colors.greenAccent[600],
         },
+        '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
+          color: `${colors.grey[100]} !important`,
+        },
       }}
     >
       <DataGrid
-        // autoHeight
         // loading={true}
-        // experimentalFeatures={{ newEditingApi: true }}
         rows={rows}
         // @ts-ignore
         columns={columns}
         pageSize={25}
+        onRowDoubleClick={handleOnRowDoubleClick}
+        components={{
+          Toolbar: GridToolbar,
+        }}
         sx={{
           fontSize: '1rem !important',
         }}
-        onRowDoubleClick={handleOnRowDoubleClick}
       />
     </Box>
   );
@@ -142,23 +154,39 @@ const Indicator = (type: 'expenses' | 'income', colors: any): JSX.Element => {
   return (
     <>
       {type == 'expenses' ? (
-        <TrendingDownOutlinedIcon
-          style={{
-            backgroundColor: colors.redAccent[600],
-            padding: '3px',
-            fontSize: '40px',
-            borderRadius: '5px',
-          }}
-        />
+        <Box
+          display="flex"
+          gap="1rem"
+          alignItems="center"
+          textTransform="capitalize"
+        >
+          <Box color={colors.redAccent[400]}>{type}</Box>
+          <TrendingDownOutlinedIcon
+            style={{
+              backgroundColor: colors.redAccent[500],
+              padding: '3px',
+              fontSize: '40px',
+              borderRadius: '5px',
+            }}
+          />
+        </Box>
       ) : (
-        <TrendingUpOutlinedIcon
-          style={{
-            backgroundColor: colors.greenAccent[600],
-            padding: '3px',
-            fontSize: '40px',
-            borderRadius: '5px',
-          }}
-        />
+        <Box
+          display="flex"
+          gap="1rem"
+          alignItems="center"
+          textTransform="capitalize"
+        >
+          <Box color={colors.greenAccent[400]}>{type}</Box>
+          <TrendingUpOutlinedIcon
+            style={{
+              backgroundColor: colors.greenAccent[600],
+              padding: '3px',
+              fontSize: '40px',
+              borderRadius: '5px',
+            }}
+          />
+        </Box>
       )}
     </>
   );

@@ -5,10 +5,11 @@
       "@/components/*": ["components/*"],
       "@/data/*": ["data/*"],
       "@/database/*": ["database/*"],
-      "@/theme/*": ["theme/*"],
+      "@/interfaces/*": ["interfaces/*"],
       "@/public/*": ["public/*"],
       "@/styles/*": ["styles/*"],
-      "@/hooks/*": ["hooks/*"]
+      "@/hooks/*": ["hooks/*"],
+      "@/theme/*": ["theme/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

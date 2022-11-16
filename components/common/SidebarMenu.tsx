@@ -20,8 +20,6 @@ import {
   SettingsOutlinedIcon,
 } from './Icons';
 
-
-
 export const SidebarMenu = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -33,7 +31,7 @@ export const SidebarMenu = () => {
   };
 
   return (
-    <Sidebar component="aside" collapsed={isCollapsed}>
+    <Sidebar component="aside" colors={colors} collapsed={isCollapsed}>
       <Box mb="25px" mt="15px">
         <Box display="flex" justifyContent="center" alignItems="center">
           <Image
@@ -221,12 +219,13 @@ const MenuTitle = ({ title, colors, close }: IMenuTitle) => {
 
 interface ISidebar {
   collapsed?: boolean;
+  colors: any;
 }
 
 const Sidebar = styled(Box)<ISidebar>`
   height: 100%;
   width: ${(props) => (props.collapsed ? '70px' : '250px')};
-  background-color: #2f4050;
+  background-color: ${(props) => props.colors.general.bg};
   flex-shrink: 0;
   overflow: hidden;
   transition: all 0.3s ease;

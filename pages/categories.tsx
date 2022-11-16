@@ -1,8 +1,11 @@
+import { CategoriesMain } from '@/components/categories'
 import React from 'react'
 
 const CategoryPage = () => {
   return (
-    <div>CategoryPage</div>
+    <div>
+      <CategoriesMain />
+    </div>
   )
 }
 

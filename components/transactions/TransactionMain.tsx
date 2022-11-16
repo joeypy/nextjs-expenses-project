@@ -1,11 +1,17 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { HeaderMain } from '../common';
-import { TransactionTable } from './TransactionTable';
+import {
+  TransactionTable,
+  NewTransactionForm,
+  TransactionButtonsActions,
+} from './';
 
 interface Props {}
 
 export const TransactionMain = (props: Props) => {
+  const [isNewTransactionActive, setIsNewTransactionActive] = useState(false);
+
   return (
     <Box
       sx={{
@@ -14,8 +20,25 @@ export const TransactionMain = (props: Props) => {
         fontSize: '1rem !important',
       }}
     >
-      <HeaderMain title="CUENTAS" subtitle="Información de cuentas" />
-      <TransactionTable />
+      {!isNewTransactionActive ? (
+        <>
+          <HeaderMain
+            title="TRANSACCIONES"
+            subtitle="Información de transacciones"
+          />
+          <TransactionButtonsActions
+            isNewTransactionActive={isNewTransactionActive}
+            setIsNewTransactionActive={setIsNewTransactionActive}
+          />
+          <TransactionTable />
+        </>
+      ) : (
+        <>
+          <NewTransactionForm
+            setIsNewTransactionActive={setIsNewTransactionActive}
+          />
+        </>
+      )}
     </Box>
   );
 };

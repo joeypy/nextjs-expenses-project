@@ -7,6 +7,9 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+// Arrows
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 // Charts
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
@@ -19,7 +22,13 @@ import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
 
+export const iconMap: { [key: string]: any } = {
+  1: AttachMoneyOutlinedIcon,
+};
+
 export {
+  ArrowBackOutlinedIcon,
+  AddOutlinedIcon,
   HomeOutlinedIcon,
   PersonOutlineOutlinedIcon,
   PeopleOutlineOutlinedIcon,
@@ -37,5 +46,5 @@ export {
   TrendingUpOutlinedIcon,
   AccountBalanceOutlinedIcon,
   LocalAtmOutlinedIcon,
-  CreditCardOutlinedIcon
+  CreditCardOutlinedIcon,
 };

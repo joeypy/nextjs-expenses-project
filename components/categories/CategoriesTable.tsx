@@ -1,69 +1,65 @@
 import { Box, useTheme } from '@mui/material';
 import { DataGrid, GridEventListener, GridToolbar } from '@mui/x-data-grid';
-import {
-  AttachMoneyOutlinedIcon,
-  TrendingDownOutlinedIcon,
-  TrendingUpOutlinedIcon,
-} from '@/components/common';
+import { AttachMoneyOutlinedIcon, iconMap } from '@/components/common';
 import { tokens } from '@/theme/theme';
 import { AccountPill } from '../common/AccountWidget';
 
-export const AccountTable = () => {
+export const CategoriesTable = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const columns = [
-    // {
-    //   field: 'id',
-    //   headerName: 'ID',
-    //   headerAlign: 'center',
-    //   align: 'center',
-    //   flex: 0.5,
-    // },
     {
-      field: 'account',
-      headerName: 'Cuentas',
+      field: 'id',
+      headerName: 'ID',
+      headerAlign: 'center',
+      align: 'center',
+      flex: 0.5,
+    },
+    {
+      field: 'title',
+      headerName: 'Título',
       headerAlign: 'center',
       align: 'center',
       flex: 1,
-      renderCell: ({ value }: any) => AccountPill({ text: value }),
     },
     {
-      field: 'amount',
-      headerName: 'Total',
+      field: 'icon',
+      headerName: 'Ícono',
       headerAlign: 'center',
       align: 'center',
       flex: 1,
-      renderCell: ({ row: { amount } }: any) => (
-        <Box fontWeight="600">$ {amount}</Box>
-      ),
+      renderCell: ({ value }: any) => {
+        const Icon = iconMap[value];
+        return <Icon style={{ fontSize: '2rem' }} />;
+      },
     },
-    // {
-    //   field: 'created_at',
-    //   headerName: 'Fecha',
-    //   headerAlign: 'center',
-    //   align: 'center',
-    //   flex: 1,
-    // },
+    {
+      field: 'created_at',
+      headerName: 'Fecha',
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1,
+    },
   ];
 
   const rows = [
     {
       id: 1,
-      amount: 30,
-      account: 'Efectivo',
+      title: 'internet',
+      icon: 1,
       created_at: '12-05-2022',
     },
     {
       id: 2,
-      amount: 1100,
-      account: 'Banesco Panama',
+      title: 'comida',
+      icon: 1,
       created_at: '12-05-2022',
     },
     {
       id: 3,
-      amount: 100,
-      account: 'Zelle',
+      title: 'ocio',
+      icon: 1,
       created_at: '12-05-2022',
     },
   ];

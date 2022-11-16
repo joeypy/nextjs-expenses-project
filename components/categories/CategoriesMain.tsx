@@ -1,11 +1,11 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import { HeaderMain } from '../common';
-import { AccountTable } from './';
+import { CategoriesTable } from '.';
 
 interface Props {}
 
-export const AccountMain = (props: Props) => {
+export const CategoriesMain = (props: Props) => {
   return (
     <Box
       sx={{
@@ -14,8 +14,11 @@ export const AccountMain = (props: Props) => {
         fontSize: '1rem !important',
       }}
     >
-      <HeaderMain title="CUENTAS" subtitle="Información de cuentas" />
-      <AccountTable />
+      <HeaderMain
+        title="CATEGORÍAS"
+        subtitle="Información acerca de las categorías"
+      />
+      <CategoriesTable />
     </Box>
   );
 };

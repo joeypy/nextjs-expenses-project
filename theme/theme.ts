@@ -6,6 +6,10 @@ type TMode = 'dark' | 'light';
 export const tokens = (mode: TMode) => ({
   ...(mode === 'dark'
     ? {
+        general: {
+          component: '#3f3f3f',
+          bg: '#1f1f1f',
+        },
         grey: {
           100: '#e0e0e0',
           200: '#c2c2c2',
@@ -63,6 +67,10 @@ export const tokens = (mode: TMode) => ({
         },
       }
     : {
+        general: {
+          component: '#1F1F1F',
+          bg: '#0ebe5d',
+        },
         grey: {
           100: '#141414',
           200: '#292929',
@@ -100,7 +108,7 @@ export const tokens = (mode: TMode) => ({
           100: '#2c100f',
           200: '#58201e',
           300: '#832f2c',
-          400: '#af3f3b',
+          400: '#be3a36',
           500: '#db4f4a',
           600: '#e2726e',
           700: '#e99592',
@@ -136,19 +144,22 @@ export const themeSettings = (mode: TMode) => {
             secondary: {
               main: colors.greenAccent[500],
             },
+            tertiary: {
+              main: '#bb0000',
+            },
             neutral: {
               dark: colors.grey[700],
               main: colors.grey[500],
               light: colors.grey[100],
             },
             background: {
-              default: colors.primary[500],
+              default: colors.general.component,
             },
           }
         : {
             // palette values for light mode
             primary: {
-              main: colors.primary[100],
+              main: colors.primary[900],
             },
             secondary: {
               main: colors.greenAccent[500],

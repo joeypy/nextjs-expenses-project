@@ -1,22 +1,25 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { ColorModeContext, useMode } from '../theme/theme';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { Layout } from '@/components/layout';
+import Head from 'next/head';
+import { CacheProvider, css, EmotionCache } from '@emotion/react';
+import { createEmotionCache } from '@/theme/index';
+import { GlobalStyles, CssBaseline } from '@mui/material';
+import { Layout, PageProvider } from '@/components/layout';
 
-export default function App({ Component, pageProps }: AppProps) {
-  const [theme, colorMode] = useMode();
+interface MUIAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
 
+export default function App({
+  Component,
+  emotionCache,
+  pageProps,
+}: MUIAppProps) {
   return (
-    // @ts-ignore
-    <ColorModeContext.Provider value={colorMode}>
-      {/* @ts-ignore */}
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <PageProvider emotionCache={emotionCache}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </PageProvider>
   );
 }
