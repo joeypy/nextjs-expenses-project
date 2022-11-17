@@ -1,15 +1,16 @@
-import { Box, Button, useTheme } from '@mui/material';
-import React from 'react';
+import { useRouter } from 'next/router';
+import { Box, Button } from '@mui/material';
 import { AddOutlinedIcon } from '../common';
 
-interface Props {
-  isNewTransactionActive: boolean;
-  setIsNewTransactionActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface Props {}
 
-export const TransactionButtonsActions = ({
-  setIsNewTransactionActive,
-}: Props) => {
+export const TransactionButtonsActions = ({}: Props) => {
+  const router = useRouter();
+
+  const handleNewTransaction = () => {
+    router.push('/transactions/add-transaction');
+  };
+
   return (
     <>
       <Box mb="1rem" display="flex" justifyContent="flex-end">
@@ -18,7 +19,7 @@ export const TransactionButtonsActions = ({
           // sx={{ color: 'white' }}
           variant="contained"
           startIcon={<AddOutlinedIcon />}
-          onClick={() => setIsNewTransactionActive(true)}
+          onClick={handleNewTransaction}
         >
           Nueva transacción
         </Button>

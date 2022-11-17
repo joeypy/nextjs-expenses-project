@@ -4,6 +4,8 @@ import Head from 'next/head';
 import { FC } from 'react';
 import { createEmotionCache } from '@/theme/index';
 import { MUIThemeProvider } from './';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -22,7 +24,9 @@ export const PageProvider: FC<PageProviderProps> = ({
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <MUIThemeProvider>{children}</MUIThemeProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <MUIThemeProvider>{children}</MUIThemeProvider>
+      </LocalizationProvider>
     </CacheProvider>
   </PreferredThemeProvider>
 );

@@ -1,10 +1,10 @@
 export interface ITransaction {
   description?: string;
-  amount: number;
-  transactionType: 'expenses' | 'income';
+  amount: number | undefined;
+  transactionType: boolean; // false: 'expenses' | true: 'income'
   category: string;
   account: string;
-  created_at: Date;
+  createdAt: Date;
 }
 
 export interface ITransactionResponse {
