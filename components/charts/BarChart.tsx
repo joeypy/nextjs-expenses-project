@@ -139,7 +139,7 @@ export const BarChart = ({ isLabelsVisible = false }: Props) => {
       colors={getColor}
       keys={['Beneficio', 'Ingresos', 'Gastos', 'Perdidas']}
       indexBy="date"
-      margin={{ top: 20, right: 20, bottom: 65, left: 80 }}
+      margin={{ top: 20, right: 20, bottom: 70, left: 80 }}
       padding={0.2}
       innerPadding={4}
       groupMode="grouped"
@@ -174,11 +174,23 @@ export const BarChart = ({ isLabelsVisible = false }: Props) => {
           },
         },
         axis: {
+          domain: {
+            line: {
+              stroke: '#ffffffb4',
+              strokeWidth: 2,
+            },
+          },
           legend: {
             text: {
               fontSize: 20,
               fill: '#fff',
             },
+          },
+        },
+        grid: {
+          line: {
+            stroke: '#96969634',
+            strokeWidth: 1,
           },
         },
       }}
