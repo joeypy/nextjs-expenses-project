@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import { HeaderMain } from '../common';
+import { MainHeader } from '../common';
 import { CategoriesTable } from '.';
 
 interface Props {}
@@ -14,7 +14,7 @@ export const CategoriesMain = (props: Props) => {
         fontSize: '1rem !important',
       }}
     >
-      <HeaderMain
+      <MainHeader
         title="CATEGORÍAS"
         subtitle="Información acerca de las categorías"
       />

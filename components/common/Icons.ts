@@ -23,7 +23,26 @@ import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlin
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
 
 export const iconMap: { [key: string]: any } = {
-  1: AttachMoneyOutlinedIcon,
+  1: ArrowBackOutlinedIcon,
+  2: AddOutlinedIcon,
+  3: HomeOutlinedIcon,
+  4: PersonOutlineOutlinedIcon,
+  5: PeopleOutlineOutlinedIcon,
+  6: BarChartOutlinedIcon,
+  7: CategoryOutlinedIcon,
+  8: CurrencyExchangeOutlinedIcon,
+  9: TimelineOutlinedIcon,
+  10: SsidChartOutlinedIcon,
+  11: DataUsageOutlinedIcon,
+  12: CalendarMonthOutlinedIcon,
+  13: ReceiptLongOutlinedIcon,
+  14: SettingsOutlinedIcon,
+  15: AttachMoneyOutlinedIcon,
+  16: TrendingDownOutlinedIcon,
+  17: TrendingUpOutlinedIcon,
+  18: AccountBalanceOutlinedIcon,
+  19: LocalAtmOutlinedIcon,
+  20: CreditCardOutlinedIcon,
 };
 
 export {

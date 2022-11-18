@@ -8,7 +8,7 @@ export const tokens = (mode: TMode) => ({
     ? {
         general: {
           component: '#3f3f3f',
-          bg: '#1f1f1f',
+          bg: 'linear-gradient(to top left, #232526ef, #4a4c4ec4);',
         },
         grey: {
           100: '#e0e0e0',

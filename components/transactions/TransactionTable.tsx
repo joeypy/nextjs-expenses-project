@@ -18,14 +18,14 @@ export const TransactionTable = () => {
       headerName: 'ID',
       headerAlign: 'center',
       align: 'center',
-      width: 80,
+      width: 70,
     },
     {
       field: 'description',
       headerName: 'Descripción',
       headerAlign: 'center',
-      align: 'center',
-      flex: 1,
+      // align: 'center',
+      flex: 2.5,
     },
     {
       field: 'amount',
@@ -68,8 +68,8 @@ export const TransactionTable = () => {
       field: 'account',
       headerName: 'Cuenta',
       headerAlign: 'center',
-      align: 'center',
-      flex: 1,
+      // align: 'center',
+      flex: 1.5,
       renderCell: ({ value }: any) => AccountPill({ text: value }),
     },
     {
@@ -144,6 +144,7 @@ export const TransactionTable = () => {
         }}
         sx={{
           fontSize: '1rem !important',
+          background: "linear-gradient(to top, #232526ef, #2e2e2e7a)"
         }}
       />
     </Box>
@@ -160,15 +161,16 @@ const Indicator = (type: 'expenses' | 'income', colors: any): JSX.Element => {
           alignItems="center"
           textTransform="capitalize"
         >
-          <Box color={colors.redAccent[400]}>{type}</Box>
+          {/* TODO: Refactorizar este código y simplificarlo */}
           <TrendingDownOutlinedIcon
             style={{
-              backgroundColor: colors.redAccent[500],
               padding: '3px',
               fontSize: '40px',
               borderRadius: '5px',
+              color: '#fd5246',
             }}
           />
+          <Box color={colors.redAccent[500]}>{type}</Box>
         </Box>
       ) : (
         <Box
@@ -180,10 +182,10 @@ const Indicator = (type: 'expenses' | 'income', colors: any): JSX.Element => {
           <Box color={colors.greenAccent[400]}>{type}</Box>
           <TrendingUpOutlinedIcon
             style={{
-              backgroundColor: colors.greenAccent[600],
               padding: '3px',
               fontSize: '40px',
               borderRadius: '5px',
+              color: '#00c000',
             }}
           />
         </Box>

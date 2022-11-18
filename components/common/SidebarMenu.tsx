@@ -20,10 +20,30 @@ import {
   SettingsOutlinedIcon,
 } from './Icons';
 
-export const SidebarMenu = () => {
+interface IProps {
+  isCollapsed: boolean;
+  setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface IItem {
+  active: boolean;
+  close?: boolean;
+}
+
+interface IMenuTitle {
+  title: string;
+  colors: any;
+  close: boolean;
+}
+
+interface ISidebar {
+  collapsed?: boolean;
+  colors: any;
+}
+
+export const SidebarMenu = ({ isCollapsed, setIsCollapsed }: IProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const { pathname } = useRouter();
 
   const handleToggle = () => {
@@ -31,7 +51,12 @@ export const SidebarMenu = () => {
   };
 
   return (
-    <Sidebar component="aside" colors={colors} collapsed={isCollapsed}>
+    <Sidebar
+      component="aside"
+      colors={colors}
+      collapsed={isCollapsed}
+      sx={{ bg: 'sidebar.bg' }}
+    >
       <Box mb="25px" mt="15px">
         <Box display="flex" justifyContent="center" alignItems="center">
           <Image
@@ -193,12 +218,6 @@ const MenuItem = ({ title, href, icon, page, colors, close }: IMenuItem) => {
 };
 
 // MenuTitle
-interface IMenuTitle {
-  title: string;
-  colors: any;
-  close: boolean;
-}
-
 const MenuTitle = ({ title, colors, close }: IMenuTitle) => {
   return (
     <>
@@ -217,37 +236,26 @@ const MenuTitle = ({ title, colors, close }: IMenuTitle) => {
   );
 };
 
-interface ISidebar {
-  collapsed?: boolean;
-  colors: any;
-}
-
+// Sidebar
 const Sidebar = styled(Box)<ISidebar>`
   height: 100%;
-  width: ${(props) => (props.collapsed ? '70px' : '250px')};
-  background-color: ${(props) => props.colors.general.bg};
+  background: ${(props) => props.colors.general.bg};
   flex-shrink: 0;
   overflow: hidden;
-  transition: all 0.3s ease;
+  padding: ${(props) => (props.collapsed ? '10px' : '1.5rem')};
 `;
 
-const Menu = styled(Box)`
-  width: 80%;
-  margin: auto;
-`;
-
-interface IItem {
-  active: boolean;
-  close?: boolean;
-}
+const Menu = styled(Box)``;
 
 const Item = styled(Box)<IItem>`
   width: 100%;
-  padding: ${(props) => (props.close ? '.8rem' : '0.5rem 1rem')};
+  padding: ${(props) => (props.close ? '.8rem 0' : '0.5rem 1rem')};
+  padding-left: 0;
 
   a {
     display: flex;
     align-items: center;
+    justify-content: ${(props) => (props.close ? 'center' : undefined)};
     gap: 1rem;
     text-decoration: none;
 

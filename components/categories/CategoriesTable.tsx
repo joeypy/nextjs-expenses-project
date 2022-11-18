@@ -84,12 +84,11 @@ export const CategoriesTable = () => {
         '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
           color: `${colors.grey[100]} !important`,
         },
+        background: 'linear-gradient(to top, #232526ef, #2e2e2e7a)',
       }}
     >
       <DataGrid
-        autoHeight
         // loading={true}
-        // experimentalFeatures={{ newEditingApi: true }}
         rows={rows}
         // @ts-ignore
         columns={columns}

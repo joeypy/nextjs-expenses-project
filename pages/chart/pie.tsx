@@ -1,7 +1,8 @@
+import { PieChartMain } from '@/components/pie-chart';
 import React from 'react';
 
 const ChartPiePage = () => {
-  return <div>ChartPiePage</div>;
+  return <div><PieChartMain /></div>;
 };
 
 export default ChartPiePage;

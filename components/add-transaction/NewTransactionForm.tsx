@@ -8,7 +8,6 @@ import {
   Typography,
   Switch,
   useMediaQuery,
-  TextareaAutosize,
   InputAdornment,
   Select,
   MenuItem,
@@ -21,13 +20,14 @@ import * as yup from 'yup';
 import {
   ArrowBackOutlinedIcon,
   AttachMoneyOutlinedIcon,
-  HeaderMain,
+  MainHeader,
   TrendingDownOutlinedIcon,
   TrendingUpOutlinedIcon,
 } from '../common';
 import { MainContainer } from '../layout';
 import { ITransaction } from '@/interfaces/index';
 import { DatePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 
 interface Props {}
 
@@ -39,13 +39,18 @@ export const NewTransactionForm = ({}: Props) => {
     router.push('/transactions');
   };
 
-  const handleFormSubmit = (values: any) => {
-    console.log(values);
+  const handleFormSubmit = (values: any, actions: any) => {
+    const date = dayjs(values.createdAt).format('DD-MM-YYYY');
+    const newValues = { ...values, createdAt: date };
+    console.log(newValues);
+    console.log(actions);
+    actions.setSubmitting(false);
+    actions.resetForm();
   };
 
   return (
     <MainContainer>
-      <HeaderMain
+      <MainHeader
         title="NUEVA TRANSACCIÓN"
         subtitle="Datos para nueva transacción"
       />
@@ -86,6 +91,11 @@ export const NewTransactionForm = ({}: Props) => {
                 '& > div': {
                   gridColumn: isNonMobile ? undefined : 'span 4',
                 },
+                background:
+                  'linear-gradient(to right top, #232526ef, #414345ce)',
+                padding: '2rem',
+                borderRadius: '15px',
+                boxShadow: 8,
               }}
             >
               <Box
@@ -100,9 +110,10 @@ export const NewTransactionForm = ({}: Props) => {
                   alignItems="center"
                   gap="5px"
                   sx={{
-                    bgcolor: 'error.main',
+                    bgcolor: !values.transactionType ? 'error.main' : undefined,
                     p: '5px 10px',
                     borderRadius: '5px',
+                    transition: 'background-color .3s ease',
                   }}
                 >
                   <TrendingDownOutlinedIcon />
@@ -110,21 +121,35 @@ export const NewTransactionForm = ({}: Props) => {
                 </Box>
                 <Switch
                   aria-label="Switch demo"
-                  defaultChecked
-                  color="primary"
                   checked={values.transactionType}
                   onChange={(event) =>
                     setFieldValue('transactionType', event.target.checked)
                   }
+                  sx={{
+                    '& .MuiSwitch-thumb': {
+                      bgcolor: values.transactionType
+                        ? 'primary.main'
+                        : 'error.main',
+                    },
+                    '& .MuiSwitch-track': {
+                      bgcolor: values.transactionType
+                        ? 'primary.main'
+                        : 'error.main',
+                    },
+                    transition: 'background-color .3s ease',
+                  }}
                 />
                 <Box
                   display="flex"
                   alignItems="center"
                   gap="5px"
                   sx={{
-                    bgcolor: 'primary.main',
+                    bgcolor: values.transactionType
+                      ? 'primary.main'
+                      : undefined,
                     p: '5px 10px',
                     borderRadius: '5px',
+                    transition: 'background-color .3s ease',
                   }}
                 >
                   <TrendingUpOutlinedIcon />
@@ -212,6 +237,7 @@ export const NewTransactionForm = ({}: Props) => {
                 <DatePicker
                   label="Fecha"
                   value={values.createdAt}
+                  inputFormat="DD-MM-YYYY"
                   onChange={(value) => setFieldValue('createdAt', value)}
                   renderInput={(params) => (
                     <TextField
@@ -267,7 +293,7 @@ export const NewTransactionForm = ({}: Props) => {
 
 const initialValues: ITransaction = {
   description: '',
-  amount: undefined,
+  amount: 0,
   transactionType: false,
   category: '',
   account: '',

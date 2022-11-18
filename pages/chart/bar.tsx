@@ -1,4 +1,4 @@
-import { BarChartMain } from '../../components/barchart/BarChartMain';
+import { BarChartMain } from '../../components/bar-chart/BarChartMain';
 
 const ChartBarPage = () => {
   return (

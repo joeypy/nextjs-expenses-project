@@ -14,7 +14,7 @@ const ContentHeader = styled(Box)`
   padding: 1rem 0;
 `;
 
-export const HeaderMain = ({ title, subtitle }: IProps) => {
+export const MainHeader = ({ title, subtitle }: IProps) => {
   return (
     <ContentHeader>
       <Typography variant="h2" fontWeight="600" fontSize={26}>

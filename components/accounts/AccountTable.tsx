@@ -13,18 +13,18 @@ export const AccountTable = () => {
   const colors = tokens(theme.palette.mode);
 
   const columns = [
-    // {
-    //   field: 'id',
-    //   headerName: 'ID',
-    //   headerAlign: 'center',
-    //   align: 'center',
-    //   flex: 0.5,
-    // },
+    {
+      field: 'id',
+      headerName: 'ID',
+      headerAlign: 'center',
+      align: 'center',
+      flex: 0.5,
+    },
     {
       field: 'account',
       headerName: 'Cuentas',
       headerAlign: 'center',
-      align: 'center',
+      // align: 'center',
       flex: 1,
       renderCell: ({ value }: any) => AccountPill({ text: value }),
     },
@@ -76,8 +76,8 @@ export const AccountTable = () => {
 
   return (
     <Box
-      // width="min(400px, 100%)"
       height="75vh"
+      boxShadow={8}
       sx={{
         '& .MuiDataGrid-columnHeaders': {
           backgroundColor: colors.greenAccent[600],
@@ -88,16 +88,16 @@ export const AccountTable = () => {
         '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
           color: `${colors.grey[100]} !important`,
         },
+        background: 'linear-gradient(to top, #232526ef, #2e2e2e7a)',
       }}
     >
       <DataGrid
-        autoHeight
         // loading={true}
         // experimentalFeatures={{ newEditingApi: true }}
         rows={rows}
         // @ts-ignore
         columns={columns}
-        pageSize={25}
+        pageSize={10}
         onRowDoubleClick={handleOnRowDoubleClick}
         sx={{
           fontSize: '1rem !important',

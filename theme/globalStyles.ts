@@ -8,12 +8,12 @@ export const globalStyles = css`
   :root {
     body {
       background-color: #fff;
-      color: #333;
+      color: #474747;
     }
   }
   [data-theme="dark"] {
     body {
-      background-color: #333;
+      background-color: #474747;
       color: #fff;
     }
   }
