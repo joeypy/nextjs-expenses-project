@@ -42,14 +42,15 @@ const Item = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
   color: white;
   transition: all 0.3s ease-in-out;
   background: linear-gradient(to right top, #232526ef, #414345ce);
 
   &:hover {
-    background-color: #0e0e0e;
+    background-color: #000000;
   }
 
   .icon {

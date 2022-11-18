@@ -1,12 +1,23 @@
-import React from 'react';
-import { ResponsiveBar } from '@nivo/bar';
+import React, { useState } from 'react';
+import { BarDatum, ResponsiveBar } from '@nivo/bar';
 import { Box, Typography } from '@mui/material';
 import { linearGradientDef } from '@nivo/core';
 
-interface Props {}
+interface Props {
+  isLabelsVisible?: boolean;
+}
 
-export const BarChart = (props: Props) => {
-  const data = [
+interface ITable extends BarDatum {
+  date: string;
+  year: number;
+  Gastos: number;
+  Ingresos: number;
+  Beneficio: number;
+  Perdidas: number;
+}
+
+export const BarChart = ({ isLabelsVisible = false }: Props) => {
+  const data: ITable[] = [
     {
       date: 'Enero',
       year: 2022,
@@ -44,7 +55,7 @@ export const BarChart = (props: Props) => {
       year: 2022,
       Gastos: 10,
       Ingresos: 58,
-      Beneficio: 48,
+      Beneficio: 0,
       Perdidas: 25,
     },
     {
@@ -55,42 +66,54 @@ export const BarChart = (props: Props) => {
       Beneficio: 48,
       Perdidas: 0,
     },
-    // {
-    //   date: 'Julio',
-    //   Gastos: 132.25,
-    //   Ingresos: 155,
-    //   Beneficio: 25,
-    // },
-    // {
-    //   date: 'Agosto',
-    //   Gastos: 10,
-    //   Ingresos: 58,
-    //   Beneficio: 48,
-    // },
-    // {
-    //   date: 'Septiembre',
-    //   Gastos: 10,
-    //   Ingresos: 58,
-    //   Beneficio: 48,
-    // },
-    // {
-    //   date: 'Octubre',
-    //   Gastos: 132.25,
-    //   Ingresos: 155,
-    //   Beneficio: 25,
-    // },
-    // {
-    //   date: 'Noviembre',
-    //   Gastos: 10,
-    //   Ingresos: 58,
-    //   Beneficio: 48,
-    // },
-    // {
-    //   date: 'Diciembre',
-    //   Gastos: 10,
-    //   Ingresos: 58,
-    //   Beneficio: 48,
-    // },
+    {
+      date: 'Julio',
+      year: 2022,
+      Gastos: 132.25,
+      Ingresos: 155,
+      Beneficio: 25,
+      Perdidas: 0,
+    },
+    {
+      date: 'Agosto',
+      year: 2022,
+      Gastos: 10,
+      Ingresos: 58,
+      Beneficio: 48,
+      Perdidas: 0,
+    },
+    {
+      date: 'Septiembre',
+      year: 2022,
+      Gastos: 10,
+      Ingresos: 58,
+      Beneficio: 48,
+      Perdidas: 0,
+    },
+    {
+      date: 'Octubre',
+      year: 2022,
+      Gastos: 132.25,
+      Ingresos: 155,
+      Beneficio: 25,
+      Perdidas: 0,
+    },
+    {
+      date: 'Noviembre',
+      year: 2022,
+      Gastos: 10,
+      Ingresos: 58,
+      Beneficio: 48,
+      Perdidas: 0,
+    },
+    {
+      date: 'Diciembre',
+      year: 2022,
+      Gastos: 10,
+      Ingresos: 58,
+      Beneficio: 48,
+      Perdidas: 0,
+    },
   ];
 
   const colors = {
@@ -99,6 +122,7 @@ export const BarChart = (props: Props) => {
     Perdidas: 'red',
     Beneficio: '#0059ff',
   };
+
   const getColor = (bar: any) => (colors as any)[bar.id];
 
   return (
@@ -108,12 +132,12 @@ export const BarChart = (props: Props) => {
       defs={[
         linearGradientDef('gradientA', [
           { offset: 0, color: 'inherit', opacity: 1 },
-          { offset: 20, color: 'inherit', opacity: 0.6 },
-          { offset: 100, color: 'inherit', opacity: 0.1 },
+          { offset: 20, color: 'inherit', opacity: 0.8 },
+          { offset: 100, color: 'inherit', opacity: 0.4 },
         ]),
       ]}
       colors={getColor}
-      keys={['Ingresos', 'Gastos', 'Beneficio', 'Perdidas']}
+      keys={['Beneficio', 'Ingresos', 'Gastos', 'Perdidas']}
       indexBy="date"
       margin={{ top: 20, right: 20, bottom: 65, left: 80 }}
       padding={0.2}
@@ -126,7 +150,9 @@ export const BarChart = (props: Props) => {
         from: 'color',
         modifiers: [['darker', 1.6]],
       }}
-      enableGridX={true}
+      enableGridX={false}
+      enableGridY={true}
+      enableLabel={isLabelsVisible}
       axisLeft={{
         tickSize: 5,
         tickPadding: 5,
