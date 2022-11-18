@@ -72,7 +72,6 @@ export const CategoriesTable = () => {
 
   return (
     <Box
-      // width="min(400px, 100%)"
       height="75vh"
       sx={{
         '& .MuiDataGrid-columnHeaders': {
